@@ -1,45 +1,28 @@
 class Solution {
 public:
-    void reduceWindow(int& start, int& end, string& s, unordered_map<char, int>& m, int& ans, int& bstart){
-        while(start < s.size() && (m.find(s[start]) == m.end() || m[s[start]]>0)){
-            if(m.find(s[start]) != m.end()) m[s[start]]--;
-            start++;
-            if(end-start < ans){
-                ans = end-start;
-                bstart = start;
-            }
-        }
-    }
-    
     string minWindow(string s, string t) {
-        int i=0;
-        unordered_map<char, int> m, mn;
-        for(auto c : t) mn[c]++;
-        for(auto c : t) m[c] = 0;
-        while(!mn.empty()){
-            if(i == s.size()) return "";
-            if(mn.find(s[i]) == mn.end() && m.find(s[i]) != m.end()) m[s[i]]++;
-            if(mn.find(s[i]) != mn.end()){
-                if(mn[s[i]] == 1) mn.erase(s[i]);
-                else mn[s[i]]--;
-            }
-            i++;
+        unordered_map<char, int> map;
+        for (char c : t) {
+            map[c]++;
         }
-        int ans = i, start = 0, end = i, bstart = 0;
-        while(end < s.size()){
-            reduceWindow(start, end, s, m, ans, bstart);
-            start++;
-            while(end<s.size() && s[end]!= s[start-1]){
-                if(m.find(s[end]) != m.end()) m[s[end]]++;
-                end++;
-            }
-            end++;
-            if(end < s.size() && end-start < ans){
-                ans = end-start;
-                bstart = start;
-            }
+        int start = 0, end = 0, minStart = 0, minLen = INT_MAX, counter = t.length();
+        while (end < s.length()) {
+              char c1 = s[end];
+              if (map[c1] > 0) counter--;
+              map[c1]--;
+              end++;
+              while (counter == 0) {
+                    if (minLen > end - start) {
+                          minLen = end - start;
+                          minStart = start;
+                    }
+                    char c2 = s[start];
+                    map[c2]++;
+                    if (map[c2] > 0) counter++;
+                    start++;
+              }
         }
-        if(end <= s.size()) reduceWindow(start, end, s, m, ans, bstart);
-        return s.substr(bstart, ans);
+
+        return minLen == INT_MAX ? "" : s.substr(minStart, minLen);
     }
 };
