@@ -22,7 +22,7 @@ public:
     
     string back(int steps) {
         int t = steps;
-        while(t != 0  && cur->prev != NULL){
+        while(cur->prev != NULL && t != 0){
             cur = cur->prev;
             t--;
         }
@@ -31,7 +31,7 @@ public:
     
     string forward(int steps) {
         int t = steps;
-        while(t != 0  && cur->next != NULL){
+        while(cur->next != NULL && t != 0){
             cur = cur->next;
             t--;
         }
