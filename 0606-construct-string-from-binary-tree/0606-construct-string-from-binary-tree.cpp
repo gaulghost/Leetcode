@@ -11,18 +11,6 @@
  */
 class Solution {
 public:
-    // string dfsTree(TreeNode* root){
-    //     if(root == NULL) return "";
-    //     string temp = to_string(root->val), lft = "", rgt = "", ans = "";
-    //     lft = dfsTree(root->left);
-    //     rgt = dfsTree(root->right);
-    //     if(lft == "" && rgt == "") ans+=temp;
-    //     else if(lft == "") ans += temp + "()" + "(" + rgt + ")";
-    //     else if(rgt == "") ans += temp + "(" + lft + ")";
-    //     else ans += temp + "(" + lft + ")" + "(" + rgt + ")";
-    //     return ans;
-    // }
-    
     string dfsTree(TreeNode* root){
         if(root == NULL) return "";
         string ans = to_string(root->val);
