@@ -1,6 +1,7 @@
 class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
+        // This code is about finding the largest substring possible in the provided string.
         unordered_map<char, int> m;
         int behind = 0, ans = 0;
         for(int i =0; i<s.size(); i++){
