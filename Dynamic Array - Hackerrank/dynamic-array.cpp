@@ -16,29 +16,26 @@ vector<string> split(const string &);
  */
 
 vector<int> dynamicArray(int n, vector<vector<int>> queries) {
-    vector<vector<int>> seqList(n); // Vector of sequences
-    vector<int> results;            // To store the result of Query 2
-    int lastAnswer = 0;             // Initialize lastAnswer to 0
+    vector<vector<int>> seqList(n);
+    vector<int> results; 
+    int lastAnswer = 0;  
 
     for (const auto& query : queries) {
         int type = query[0];
         int x = query[1];
         int y = query[2];
         
-        // Compute index using (x XOR lastAnswer) % n
         int idx = (x ^ lastAnswer) % n;
 
         if (type == 1) {
-            // Query 1: Append y to sequence idx
             seqList[idx].push_back(y);
         } else if (type == 2) {
-            // Query 2: Find value at (y % seqList[idx].size()) in seqList[idx]
             lastAnswer = seqList[idx][y % seqList[idx].size()];
-            results.push_back(lastAnswer); // Store the result
+            results.push_back(lastAnswer);
         }
     }
     
-    return results; // Return all collected results
+    return results;
 }
 
 
