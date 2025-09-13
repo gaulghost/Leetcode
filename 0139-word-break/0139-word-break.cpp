@@ -1,20 +1,20 @@
 class Solution {
 public:
-    bool wordCheck(string s, int i, vector<string>& w, vector<int>& dp){
-        if (i>=s.size()) return true;
-        if(dp[i] != -1) return dp[i];
-        int ans = 0;
-        for(int j=0; j<w.size(); j++){
-            int k = i+w[j].size(), ws = w[j].size();
-            if(k<=s.size() && s.substr(i,ws) == w[j]){
-                ans = ans || wordCheck(s, i+ws, w, dp);
+    bool wordBreak(string s, vector<string>& wordDict) {
+        int n = s.size();
+        vector<bool> dp(n + 1, false);
+        dp[0] = true; // base case: empty string
+
+        for (int i = 1; i <= n; i++) {
+            for (string &word : wordDict) {
+                int len = word.size();
+                if (i >= len && s.substr(i - len, len) == word && dp[i - len]) {
+                    dp[i] = true;
+                    break; // no need to check further if already true
+                }
             }
         }
-        return dp[i] = ans;
-    }
 
-    bool wordBreak(string s, vector<string>& wordDict) {
-        vector<int> dp(s.size(), -1);
-        return wordCheck(s, 0, wordDict, dp);
+        return dp[n];
     }
 };
