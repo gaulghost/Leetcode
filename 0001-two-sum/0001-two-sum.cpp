@@ -2,8 +2,9 @@ class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
         // what is question about? tell me the best solution and its time and
+        // Answer: The problem asks for indices of two numbers whose sum equals the target. The optimal solution uses a hash map for O(N) time.
         // space complexity The problem asks for indices of two numbers that add
-        // up to the target. Use a hash map for O(N) time and O(N) extra space.
+        // Answer: Space complexity is O(N) due to storing up to N entries in the hash map.
         unordered_map<int, int> idx; // maps number value to its index
         for (int i = 0; i < (int)nums.size(); ++i) {
             int complement = target - nums[i];
@@ -15,9 +16,11 @@ public:
         }
         return {}; // guaranteed to have a solution, this line is just for
                    // completeness
+
+        // is this the best solution?
+        // Answer: Yes, this O(N) time and O(N) space solution is optimal for the Two Sum problem.
     }
 };
-
 
 // Synced seamlessly with LeetHub Pro
 // Pro features: https://bit.ly/leethubpro | Free version: https://bit.ly/leethubv4
