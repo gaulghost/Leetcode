@@ -1,19 +1,27 @@
 class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
-        // This code is about finding the largest substring possible in the provided string.
-        unordered_map<char, int> m;
-        int behind = 0, ans = 0;
-        for(int i =0; i<s.size(); i++){
-            if(m.find(s[i]) == m.end() || (m.find(s[i]) != m.end() && m[s[i]] < behind)){
-                m[s[i]] = i;
-                ans = max(ans, i-behind+1);
+        if(s.size()<1) return 0;
+        unordered_set<char> dp;
+        dp.insert(s[0]);
+        int ans = 1, st = 0, end=1;
+        while(end<s.size()){
+            if(dp.find(s[end]) == dp.end()){
+                dp.insert(s[end]);
+            } else {
+                while(s[st] != s[end]){
+                    dp.erase(s[st]);
+                    st++;
+                }
+                st++;
             }
-            else{
-                behind = m[s[i]]+1;
-                m[s[i]] = i;
-            }
+            end++;
+            ans = max(ans, (int)dp.size());
         }
         return ans;
     }
 };
+
+// Synced seamlessly with LeetHub Pro
+// Pro features: https://bit.ly/leethubpro | Free version: https://bit.ly/leethubv4
+// Get it here: https://chromewebstore.google.com/detail/bcilpkkbokcopmabingnndookdogmbna
