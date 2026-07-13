@@ -11,9 +11,8 @@ class Solution {
             count--;
         }
         // what is time complexity of this
-        // Time Complexity: O(n) where n = x (loop runs x+1 times)
-        // Space Complexity: O(1) (constant space for variables)
-        // This is optimal for this straightforward iterative approach
+        // Time Complexity: O(x) - Loop runs (x+1) times (from x down to 0 inclusive)
+        // Space Complexity: O(1) - Constant extra space used
     }
 };
 
