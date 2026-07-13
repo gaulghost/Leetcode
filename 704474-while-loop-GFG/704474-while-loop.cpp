@@ -10,13 +10,12 @@ class Solution {
             if(count != 0) cout<<" ";
             count--;
         }
-        // Time Complexity: O(n) where n is the initial value of 'x'
-        // Space Complexity: O(1) - constant space used
-        // Optimal solution may exist depending on problem constraints
+        // what is time complexity of this
+        // Time Complexity: O(n) where n = x (loop runs x+1 times)
+        // Space Complexity: O(1) (constant space for variables)
+        // This is optimal for this straightforward iterative approach
     }
 };
-
-
 
 // Synced seamlessly with LeetHub Pro
 // Pro features: https://bit.ly/leethubpro | Free version: https://bit.ly/leethubv4
