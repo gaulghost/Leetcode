@@ -9,7 +9,6 @@ public:
         for(int i=0; i<parent.size(); i++) parent[i] = i;
         for(int i=0; i<edges.size(); i++){
             int a = findParent(edges[i][0], parent), b = findParent(edges[i][1], parent);
-            cout<<edges[i][0]<<" "<<edges[i][1]<<" "<<a<<" "<<b<<endl;
             if(a==b) return edges[i];
             parent[a] = parent[b];
         }
