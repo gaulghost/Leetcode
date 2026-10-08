@@ -1,28 +1,46 @@
 class Solution {
 public:
     string minWindow(string s, string t) {
-        unordered_map<char, int> map;
+        // My soln re-written by AI
+        if (s.size() < t.size()) return "";
+        unordered_map<char, int> ums, um2;
         for (char c : t) {
-            map[c]++;
+            ums[c]++;
+            um2[c]--;
         }
-        int start = 0, end = 0, minStart = 0, minLen = INT_MAX, counter = t.length();
-        while (end < s.length()) {
-              char c1 = s[end];
-              if (map[c1] > 0) counter--;
-              map[c1]--;
-              end++;
-              while (counter == 0) {
-                    if (minLen > end - start) {
-                          minLen = end - start;
-                          minStart = start;
-                    }
-                    char c2 = s[start];
-                    map[c2]++;
-                    if (map[c2] > 0) counter++;
-                    start++;
-              }
+        int i = 0, j = 0;
+        // Phase 1: Expand j until we find the first valid window
+        while (!ums.empty() && j < s.size()) {
+            um2[s[j]]++;
+            if (ums.contains(s[j])) {
+                ums[s[j]]--;
+                if (ums[s[j]] == 0) ums.erase(s[j]);
+            }
+            j++;
         }
-
-        return minLen == INT_MAX ? "" : s.substr(minStart, minLen);
+        if (!ums.empty()) return ""; // Could not even satisfy t
+        // Initial shrink: Remove any surplus characters from the beginning
+        while (i < j && um2[s[i]] > 0) {
+            um2[s[i++]]--;
+        }
+        string ans = s.substr(i, j - i);
+        // Phase 2: Slide and continuously shrink surplus
+        while (j < s.size()) {
+            // Expand j
+            um2[s[j++]]++;
+            // Shrink any surplus from the left
+            while (i < j && um2[s[i]] > 0) {
+                um2[s[i++]]--;
+            }
+            // If this window is smaller, update ans
+            if (j - i < ans.size()) {
+                ans = s.substr(i, j - i);
+            }
+        }
+        return ans;
     }
 };
+
+// Synced seamlessly with LeetHub Pro
+// Pro features: https://bit.ly/leethubpro | Free version: https://bit.ly/leethubv4
+// Get it here: https://chromewebstore.google.com/detail/bcilpkkbokcopmabingnndookdogmbna
