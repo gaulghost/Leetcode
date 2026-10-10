@@ -10,16 +10,11 @@ public:
             }
             s.push(i);
         }
-        while(!s.empty()){        
-            int i=0;
-            while(i < s.top()){
-                if(nums[i] > nums[s.top()]){
-                    ans[s.top()] = nums[i];
-                    break;
-                }
-                i++;
+        for(int i=0; i<nums.size(); i++){
+            while(!s.empty() && nums[i] > nums[s.top()]){
+                ans[s.top()] = nums[i];
+                s.pop();
             }
-            s.pop();
         }
         return ans; 
     }
