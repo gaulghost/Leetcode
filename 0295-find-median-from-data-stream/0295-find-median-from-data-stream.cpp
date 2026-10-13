@@ -1,22 +1,34 @@
 class MedianFinder {
-private:
-    multiset<int> mul_set;
-    multiset<int>::iterator itrtr = mul_set.begin();
-    bool checkodd = false;
-    
 public:
+    priority_queue<int> max_heap;
+    priority_queue<int, vector<int>, greater<int>> min_heap;
+
     MedianFinder() {}
     
     void addNum(int num) {
-        mul_set.insert(num);
-        checkodd = !checkodd;
-        
-        if (mul_set.size()==1 || (!checkodd && (*itrtr) <= num)) itrtr++;
-        if (checkodd && (*itrtr) > num) itrtr--;
+        max_heap.push(num);
+        min_heap.push(max_heap.top());
+        max_heap.pop();
+        if(max_heap.size() < min_heap.size()){
+            max_heap.push(min_heap.top());
+            min_heap.pop();
+        }
     }
     
     double findMedian() {
-        return (checkodd)? *itrtr : (*itrtr + *prev(itrtr)) / 2.0;
+        if(max_heap.size() == min_heap.size()) return (double)(max_heap.top() + min_heap.top())/2;
+        else if(max_heap.size() > min_heap.size()) return max_heap.top();
+        return min_heap.top();
     }
-    
 };
+
+/**
+ * Your MedianFinder object will be instantiated and called as such:
+ * MedianFinder* obj = new MedianFinder();
+ * obj->addNum(num);
+ * double param_2 = obj->findMedian();
+ */
+
+// Synced seamlessly with LeetHub Pro
+// Pro features: https://bit.ly/leethubpro | Free version: https://bit.ly/leethubv4
+// Get it here: https://chromewebstore.google.com/detail/bcilpkkbokcopmabingnndookdogmbna
