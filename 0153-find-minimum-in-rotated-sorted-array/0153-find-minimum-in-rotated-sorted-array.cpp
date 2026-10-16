@@ -1,16 +1,22 @@
 class Solution {
 public:
     int findMin(vector<int>& nums) {
-        int start=0, end=nums.size()-1, ans=INT_MAX;
-        while(start<=end){
-            int mid = (start+end)/2;
-            ans = min(ans, nums[mid]);
-            if(nums[mid] > nums[end]){
-                start = mid+1;
+        int i=0, j=nums.size()-1, smal = nums[0];
+        while(i<=j){
+            int mid = (i+j)/2;
+            smal = min(smal, nums[mid]);
+            if(nums[mid] < nums[i]){
+                if(nums[j] > nums[mid]) j = mid-1;
+                else i = mid+1;
             } else {
-                end = mid-1;
+                if(nums[mid] >= nums[j]) i = mid+1;
+                else j = mid-1;
             }
         }
-        return ans;
+        return smal;
     }
 };
+
+// Synced seamlessly with LeetHub Pro
+// Pro features: https://bit.ly/leethubpro | Free version: https://bit.ly/leethubv4
+// Get it here: https://chromewebstore.google.com/detail/bcilpkkbokcopmabingnndookdogmbna
