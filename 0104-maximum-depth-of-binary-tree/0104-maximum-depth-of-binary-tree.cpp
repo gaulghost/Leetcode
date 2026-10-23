@@ -13,9 +13,12 @@ class Solution {
 public:
     int maxDepth(TreeNode* root) {
         if(root == NULL) return 0;
-        int lft = 0, rgt = 0;
-        if(root->left) lft = maxDepth(root->left);
-        if(root->right) rgt = maxDepth(root->right);
-        return max(lft, rgt) + 1;
+        int left = 1 + maxDepth(root->left);
+        int right = 1 + maxDepth(root->right);
+        return max(left, right);
     }
 };
+
+// Synced seamlessly with LeetHub Pro
+// Pro features: https://bit.ly/leethubpro | Free version: https://bit.ly/leethubv4
+// Get it here: https://chromewebstore.google.com/detail/bcilpkkbokcopmabingnndookdogmbna
