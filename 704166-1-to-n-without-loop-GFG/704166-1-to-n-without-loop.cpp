@@ -12,7 +12,6 @@ class Solution {
         if (n <= 0) return;
         printTillN(n - 1);
         std::cout << n << " ";
-        // this is good enough i think
     }
 };
 
