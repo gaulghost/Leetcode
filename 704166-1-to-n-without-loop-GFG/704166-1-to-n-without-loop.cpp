@@ -3,7 +3,7 @@
 class Solution {
   public:
     void printTillN(int n) {
-        // force git push test
+        // submit test
         if (n <= 0) return;
         printTillN(n - 1);
         std::cout << n << " ";
