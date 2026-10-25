@@ -3,12 +3,9 @@
 class Solution {
   public:
     void printTillN(int n) {
-        // Recursively prints numbers from 1 to n without using loops.
-        // Approach: call printTillN(n-1) first, then print n.
-        // Time Complexity: O(n) – one call per number.
-        // Space Complexity: O(n) – recursion depth = n (stack frames).
-        // Note: For very large n, recursion may cause stack overflow.
-        // An iterative solution would use O(1) space but loops are not allowed here.
+        // This function correctly prints numbers from 1 to n using recursion.
+        // Time Complexity: O(n) because it makes a single recursive call for each integer from n down to 1.
+        // Space Complexity: O(n) due to the recursion stack depth (n calls). An iterative version could achieve O(1) extra space.
         if (n <= 0) return;
         printTillN(n - 1);
         std::cout << n << " ";
