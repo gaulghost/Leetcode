@@ -1,9 +1,6 @@
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
-        // This solution uses a hash map to achieve O(n) time complexity.
-        // For each element we check if its complement (target - nums[i]) has been seen before.
-        // If found, we return the pair of indices. Otherwise, we store the current value with its index.
         unordered_map<int, int> idx; // maps number -> its index
         for (int i = 0; i < (int)nums.size(); ++i) {
             int complement = target - nums[i];
