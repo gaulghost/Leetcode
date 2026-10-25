@@ -3,6 +3,7 @@ Enter your query here.
 */
 
 SELECT CITY, STATE from STATION
+-- testing
 
 
 -- Synced seamlessly with LeetHub Pro
