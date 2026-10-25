@@ -1,10 +1,7 @@
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
-        // testing force push
-        // This comment appears to be a placeholder. The implementation below correctly solves the Two Sum problem using a hash map.
-        // Time Complexity: O(n) – each element is processed once.
-        // Space Complexity: O(n) – extra space for the unordered_map storing at most n entries.
+        // submit test
         unordered_map<int, int> idx;
         for (int i = 0; i < (int)nums.size(); ++i) {
             int complement = target - nums[i];
