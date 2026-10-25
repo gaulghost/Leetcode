@@ -1,23 +1,22 @@
 class Solution {
 public:
-    // Two Sum solution using a hash map for O(n) time.
     vector<int> twoSum(vector<int>& nums, int target) {
-        unordered_map<int, int> idx; // map from number to its index
+        // testing force push
+        // This comment appears to be a placeholder. The implementation below correctly solves the Two Sum problem using a hash map.
+        // Time Complexity: O(n) – each element is processed once.
+        // Space Complexity: O(n) – extra space for the unordered_map storing at most n entries.
+        unordered_map<int, int> idx;
         for (int i = 0; i < (int)nums.size(); ++i) {
-            int complement = target - nums[i]; // value needed to reach target
+            int complement = target - nums[i];
             auto it = idx.find(complement);
             if (it != idx.end()) {
-                // Found the pair: return indices of complement and current element
                 return {it->second, i};
             }
-            // Store the current number and its index for future complement checks
             idx[nums[i]] = i;
         }
-        // No pair found (the problem guarantees a solution, so this is just a fallback)
+        // If no solution is found (problem guarantees one), return empty vector.
         return {};
     }
-    // Time Complexity: O(n) where n = nums.size().
-    // Space Complexity: O(n) due to the hash map storing up to n entries.
 };
 
 // Synced seamlessly with LeetHub Pro
