@@ -1,9 +1,8 @@
 /*
 Enter your query here.
 */
-
+-- Jut fetch city and state from table station
 SELECT CITY, STATE from STATION
--- testing
 
 
 -- Synced seamlessly with LeetHub Pro
