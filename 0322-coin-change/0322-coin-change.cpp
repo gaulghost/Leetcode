@@ -1,23 +1,17 @@
 class Solution {
 public:
-    int countCoins(vector<int>& coins, int amt, vector<int>& dp){
-        if(amt == 0) return 0;
-        if(dp[amt] != -1) return dp[amt];
-        int ans = INT_MAX;
-        for(int i=0; i<coins.size(); i++){
-            if(coins[i] > amt) continue;
-            int cur = countCoins(coins, amt-coins[i], dp);
-            if(cur != INT_MAX) cur++;
-            ans = min(ans, cur);
-        }
-        return dp[amt] = ans;
-    }
-
     int coinChange(vector<int>& coins, int amount) {
-        vector<int> dp(amount+1, -1);
-        int ans = countCoins(coins, amount, dp);
-        if(ans == INT_MAX) return -1;
-        return ans;
+        vector<int> dp(amount+1, INT_MAX);
+        dp[0] = 0;
+        for(int i=1; i<dp.size(); i++){
+            int minval = INT_MAX;
+            for(int j=0; j<coins.size(); j++){
+                if(i-coins[j] < 0) continue;
+                minval = min(minval, dp[i-coins[j]]==INT_MAX ? INT_MAX : dp[i-coins[j]]+1);
+            }
+            dp[i] = minval;
+        }
+        return dp[amount] == INT_MAX ? -1 : dp[amount];
     }
 };
 
