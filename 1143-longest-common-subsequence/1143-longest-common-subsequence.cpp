@@ -11,9 +11,12 @@ public:
                 if(text1[i] == text2[j]){
                     dp[i][j] = 1 + m;
                 } else dp[i][j] = max(k,l);
-                cout<<dp[i][j]<<" "<<i<<" "<<j<<endl;
             }
         }
         return dp[text1.size()-1][text2.size()-1];
     }
 };
+
+// Synced seamlessly with LeetHub Pro
+// Pro features: https://bit.ly/leethubpro | Free version: https://bit.ly/leethubv4
+// Get it here: https://chromewebstore.google.com/detail/bcilpkkbokcopmabingnndookdogmbna
